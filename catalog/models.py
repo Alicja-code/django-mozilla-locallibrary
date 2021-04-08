@@ -7,7 +7,10 @@ import uuid # Required for unique book instances
 
 class Genre(models.Model):
     """Model representing a book genre."""
-    name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
+    name = models.CharField(
+        max_length=200,
+        help_text='Enter a book genre (e.g. Science Fiction)',
+    )
 
     def __str__(self):
         """String for representing the Model object."""
@@ -17,8 +20,10 @@ class Genre(models.Model):
 # todo
 class Language(models.Model):
     """Model representing a Language (e.g. English, French, Japanese, etc.)"""
-    name = models.CharField(max_length=200,
-                            help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
+    name = models.CharField(
+        max_length=200,
+        help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)",
+    )
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
@@ -47,6 +52,9 @@ class Book(models.Model):
     # todo
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
 
+    class Meta:
+        ordering = ['title', 'author']
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title
@@ -64,7 +72,11 @@ class Book(models.Model):
 
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        help_text='Unique ID for this particular book across whole library',
+    )
     book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
     imprint = models.CharField(max_length=200)
     due_back = models.DateField(null=True, blank=True)
