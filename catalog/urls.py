@@ -9,4 +9,8 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     # path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
     re_path(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
+    # URL conf for on loan books
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
+    # challenge: page only visible for librarians, that displays all books that have been borrowed, and which includes the name of each borrower
+    path('borrowed/', views.LoanedBooksAllListView.as_view(), name='all-borrowed'),
 ]
