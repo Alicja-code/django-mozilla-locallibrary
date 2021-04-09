@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'm9&j7zko^&)dc3(f!74f%eo&76i34n
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['enigmatic-depths-06398.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
